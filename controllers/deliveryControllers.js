@@ -24,7 +24,6 @@ exports.create = async (req, res) => {
   try {
     const newDelivery = await Delivery.create(req.body);
     const linkToPay = "https://www.bitpay.co.il/app/share-info?i=170560323445_19eHEbit"
-    const bit = "bit"
     client.messages
       .create({
         body: ` בקשה לאיסוף חבילה מספר ${req.body.packageNumber}  לכתובת ${req.body.address} התקבלה! \n לתשלום: ${linkToPay} \n לאחר התשלום המשלוח יצא לדרך!  `,

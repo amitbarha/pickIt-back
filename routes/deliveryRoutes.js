@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.route('/create').post(deliveryController.create);
 router.route('/getAll').get(deliveryController.getAll);
-router.route('/chatReq').post(deliveryController.chatReq);
+// router.route('/chatReq').post(deliveryController.chatReq);
 
 
 module.exports = router;

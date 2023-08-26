@@ -1,6 +1,5 @@
 const Delivery = require("../models/delivery");
 // const OpenAI = require("openai");
-const { link } = require("../routes/deliveryRoutes");
 require("dotenv").config();
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -24,15 +23,15 @@ exports.create = async (req, res) => {
   try {
     const newDelivery = await Delivery.create(req.body);
     const linkToPay = "https://www.bitpay.co.il/app/share-info?i=170560323445_19eHEbit"
+    const bit = "bit"
     client.messages
       .create({
-        body: ` בקשה לאיסוף חבילה מספר ${req.body.packageNumber}  לכתובת ${req.body.address} התקבלה! \n לתשלום: ${linkToPay} \n לאחר התשלום המשלוח יצא לדרך!  `,
+        body: `חבילה מספר ${req.body.packageNumber}  לכתובת ${req.body.address} התקבלה! \n לתשלום: ${linkToPay} \n לאחר התשלום המשלוח יצא לדרך!  `,
         from: "+13612044166",
         to: req.body.phoneNumber,
       })
       .then((message) => console.log(message))
-      .catch(err => console.log(err));
-      
+      .catch((err) => console.log(err));
     res.status(200).json(newDelivery);
   } catch (err) {
     res.status(500).json(err.message);

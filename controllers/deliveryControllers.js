@@ -30,7 +30,9 @@ exports.create = async (req, res) => {
         from: "+13612044166",
         to: req.body.phoneNumber,
       })
-      .then((message) => console.log(message));
+      .then((message) => console.log(message))
+      .catch(err => console.log(err));
+      
     res.status(200).json(newDelivery);
   } catch (err) {
     res.status(500).json(err.message);

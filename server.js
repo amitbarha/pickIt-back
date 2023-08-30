@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser')
 const deliveryRoutes = require('./routes/deliveryRoutes')
 const mongoose = require('mongoose')
+const userRoutes= require('./routes/users')
 const cors = require("cors")
 
 
@@ -23,6 +24,7 @@ app.use(bodyParser.json());
 app.use(cors())
 
 app.use("/deliveries", deliveryRoutes);
+app.use('/users',userRoutes)
 app.listen(3000, () => {
     console.log("Server running on port 3000");
 });
